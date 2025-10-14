@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Projects | MetroNewTech</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap");
+      :root {
+        --neon-green: #39ff14;
+        --terminal-bg: #0d0208;
+      }
+      body {
+        font-family: "JetBrains Mono", monospace;
+        background-color: var(--terminal-bg);
+        color: var(--neon-green);
+        overflow-x: hidden;
+      }
+      .glow-text {
+        text-shadow: 0 0 5px var(--neon-green), 0 0 10px var(--neon-green);
+      }
+      .category-btn.active {
+        background-color: #39ff14;
+        color: #0d0208;
+      }
+
+      /* Matrix Background Styles */
+      .matrix-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.3;
+      }
+
+      /* Ensure content is above matrix background */
+      .container {
+        position: relative;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen">
+    <!-- Matrix Falling Code Background -->
+    <canvas id="matrix-bg" class="matrix-bg"></canvas>
+
+    <div class="container mx-auto px-4 py-12 max-w-6xl">
+      <!-- Header -->
+      <header class="mb-12 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 glow-text">
+          <span class="text-white">All</span>
+          <span class="text-[#39FF14]">Projects</span>
+        </h1>
+        <p class="text-lg text-gray-400">
+          // Browse my complete portfolio by category
+        </p>
+      </header>
+
+      <!-- Category Filters -->
+      <div class="flex flex-wrap justify-center gap-4 mb-12">
+        <button
+          class="category-btn px-6 py-2 border-2 border-[#39FF14] text-[#39FF14] font-bold rounded hover:bg-[#39FF14] hover:text-black transition-all duration-300 active"
+          data-category="all"
+        >
+          All Projects
+        </button>
+        <button
+          class="category-btn px-6 py-2 border-2 border-[#39FF14] text-[#39FF14] font-bold rounded hover:bg-[#39FF14] hover:text-black transition-all duration-300"
+          data-category="mobile"
+        >
+          <i data-feather="smartphone" class="w-5 h-5 mr-2 inline"></i> Mobile
+        </button>
+        <button
+          class="category-btn px-6 py-2 border-2 border-[#39FF14] text-[#39FF14] font-bold rounded hover:bg-[#39FF14] hover:text-black transition-all duration-300"
+          data-category="web"
+        >
+          <i data-feather="globe" class="w-5 h-5 mr-2 inline"></i> Web
+        </button>
+        <button
+          class="category-btn px-6 py-2 border-2 border-[#39FF14] text-[#39FF14] font-bold rounded hover:bg-[#39FF14] hover:text-black transition-all duration-300"
+          data-category="desktop"
+        >
+          <i data-feather="monitor" class="w-5 h-5 mr-2 inline"></i> Desktop
+        </button>
+        <button
+          class="category-btn px-6 py-2 border-2 border-[#39FF14] text-[#39FF14] font-bold rounded hover:bg-[#39FF14] hover:text-black transition-all duration-300"
+          data-category="api"
+        >
+          <i data-feather="code" class="w-5 h-5 mr-2 inline"></i> API
+        </button>
+      </div>
+
+      <!-- Projects Grid -->
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        id="projects-container"
+      >
+        <!-- Mobile Project 1 -->
+        <div
+          class="project-card bg-black bg-opacity-50 rounded-lg overflow-hidden border border-gray-800 hover:border-[#39FF14] transition-all duration-300"
+          data-category="mobile"
+        >
+          <div
+            class="relative h-48 bg-gradient-to-r from-[#39FF14] to-[#9900FF]"
+          >
+            <img
+              src="http://static.photos/technology/640x360/301"
+              alt="Mobile App 1"
+              class="w-full h-full object-cover opacity-90"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"
+            ></div>
+            <div class="absolute bottom-4 left-4">
+              <h3 class="text-xl font-bold">MetroPay Wallet</h3>
+              <p class="text-gray-400 text-sm">Secure Mobile Payments</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-gray-400 mb-4 text-sm">
+              A secure mobile payment application with biometric authentication
+              and end-to-end encryption.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span
+                class="px-2 py-1 bg-[#39FF14] bg-opacity-20 text-[#39FF14] rounded-full text-xs"
+                >Kotlin</span
+              >
+              <span
+                class="px-2 py-1 bg-[#39FF14] bg-opacity-20 text-[#39FF14] rounded-full text-xs"
+                >Jetpack Compose</span
+              >
+              <span
+                class="px-2 py-1 bg-[#39FF14] bg-opacity-20 text-[#39FF14] rounded-full text-xs"
+                >Room DB</span
+              >
+            </div>
+            <div class="flex justify-between">
+              <a
+                href="#"
+                class="text-sm text-[#39FF14] hover:underline flex items-center"
+              >
+                <i data-feather="github" class="w-4 h-4 mr-1"></i> Code
+              </a>
+              <a
+                href="#"
+                class="text-sm text-[#39FF14] hover:underline flex items-center"
+              >
+                <i data-feather="external-link" class="w-4 h-4 mr-1"></i> Demo
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Web Project 1 -->
+        <div
+          class="project-card bg-black bg-opacity-50 rounded-lg overflow-hidden border border-gray-800 hover:border-[#9900FF] transition-all duration-300"
+          data-category="web"
+        >
+          <div
+            class="relative h-48 bg-gradient-to-r from-[#9900FF] to-[#00FFFF]"
+          >
+            <img
+              src="http://static.photos/technology/640x360/302"
+              alt="Web App 1"
+              class="w-full h-full object-cover opacity-90"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"
+            ></div>
+            <div class="absolute bottom-4 left-4">
+              <h3 class="text-xl font-bold">CyberNest CMS</h3>
+              <p class="text-gray-400 text-sm">Headless CMS</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-gray-400 mb-4 text-sm">
+              A performant headless CMS built with Next.js, optimized for SEO
+              with custom admin dashboard.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span
+                class="px-2 py-1 bg-[#9900FF] bg-opacity-20 text-[#9900FF] rounded-full text-xs"
+                >Next.js</span
+              >
+              <span
+                class="px-2 py-1 bg-[#9900FF] bg-opacity-20 text-[#9900FF] rounded-full text-xs"
+                >TypeScript</span
+              >
+              <span
+                class="px-2 py-1 bg-[#9900FF] bg-opacity-20 text-[#9900FF] rounded-full text-xs"
+                >MongoDB</span
+              >
+            </div>
+            <div class="flex justify-between">
+              <a
+                href="#"
+                class="text-sm text-[#39FF14] hover:underline flex items-center"
+              >
+                <i data-feather="github" class="w-4 h-4 mr-1"></i> Code
+              </a>
+              <a
+                href="#"
+                class="text-sm text-[#39FF14] hover:underline flex items-center"
+              >
+                <i data-feather="external-link" class="w-4 h-4 mr-1"></i> Live
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Desktop Project 1 -->
+        <div
+          class="project-card bg-black bg-opacity-50 rounded-lg overflow-hidden border border-gray-800 hover:border-[#00FFFF] transition-all duration-300"
+          data-category="desktop"
+        >
+          <div
+            class="relative h-48 bg-gradient-to-r from-[#00FFFF] to-[#FF6EC7]"
+          >
+            <img
+              src="http://static.photos/technology/640x360/303"
+              alt="Desktop App 1"
+              class="w-full h-full object-cover opacity-90"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"
+            ></div>
+            <div class="absolute bottom-4 left-4">
+              <h3 class="text-xl font-bold">CodeMatrix IDE</h3>
+              <p class="text-gray-400 text-sm">Developer Environment</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-gray-400 mb-4 text-sm">
+              Hybrid desktop IDE with real-time collaboration supporting
+              multiple languages.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span
+                class="px-2 py-1 bg-[#00FFFF] bg-opacity-20 text-[#00FFFF] rounded-full text-xs"
+                >C++</span
+              >
+              <span
+                class="px-2 py-1 bg-[#00FFFF] bg-opacity-20 text-[#00FFFF] rounded-full text-xs"
+                >Qt</span
+              >
+              <span
+                class="px-2 py-1 bg-[#00FFFF] bg-opacity-20 text-[#00FFFF] rounded-full text-xs"
+                >WebSockets</span
+              >
+            </div>
+            <div class="flex justify-between">
+              <a
+                href="#"
+                class="text-sm text-[#39FF14] hover:underline flex items-center"
+              >
+                <i data-feather="github" class="w-4 h-4 mr-1"></i> Code
+              </a>
+              <a
+                href="#"
+                class="text-sm text-[#39FF14] hover:underline flex items-center"
+              >
+                <i data-feather="download" class="w-4 h-4 mr-1"></i> Download
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- API Project 1 -->
+        <div
+          class="project-card bg-black bg-opacity-50 rounded-lg overflow-hidden border border-gray-800 hover:border-[#FF6EC7] transition-all duration-300"
+          data-category="api"
+        >
+          <div
+            class="relative h-48 bg-gradient-to-r from-[#FF6EC7] to-[#39FF14]"
+          >
+            <img
+              src="http://static.photos/technology/640x360/304"
+              alt="API Project 1"
+              class="w-full h-full object-cover opacity-90"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"
+            ></div>
+            <div class="absolute bottom-4 left-4">
+              <h3 class="text-xl font-bold">NeuralGuard API</h3>
+              <p class="text-gray-400 text-sm">AI Security Framework</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-gray-400 mb-4 text-sm">
+              REST API for real-time threat detection using neural networks.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span
+                class="px-2 py-1 bg-[#FF6EC7] bg-opacity-20 text-[#FF6EC7] rounded-full text-xs"
+                >Node.js</span
+              >
+              <span
+                class="px-2 py-1 bg-[#FF6EC7] bg-opacity-20 text-[#FF6EC7] rounded-full text-xs"
+                >TensorFlow</span
+              >
+              <span
+                class="px-2 py-1 bg-[#FF6EC7] bg-opacity-20 text-[#FF6EC7] rounded-full text-xs"
+                >OpenCV</span
+              >
+            </div>
+            <div class="flex justify-between">
+              <a
+                href="#"
+                class="text-sm text-[#39FF14] hover:underline flex items-center"
+              >
+                <i data-feather="github" class="w-4 h-4 mr-1"></i> Code
+              </a>
+              <a
+                href="#"
+                class="text-sm text-[#39FF14] hover:underline flex items-center"
+              >
+                <i data-feather="book" class="w-4 h-4 mr-1"></i> Docs
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Project 2 -->
+        <div
+          class="project-card bg-black bg-opacity-50 rounded-lg overflow-hidden border border-gray-800 hover:border-[#39FF14] transition-all duration-300"
+          data-category="mobile"
+        >
+          <div
+            class="relative h-48 bg-gradient-to-r from-[#39FF14] to-[#9900FF]"
+          >
+            <img
+              src="http://static.photos/technology/640x360/305"
+              alt="Mobile App 2"
+              class="w-full h-full object-cover opacity-90"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"
+            ></div>
+            <div class="absolute bottom-4 left-4">
+              <h3 class="text-xl font-bold">FitnessTracker</h3>
+              <p class="text-gray-400 text-sm">Health & Fitness</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-gray-400 mb-4 text-sm">
+              Comprehensive fitness tracking app with workout plans and
+              nutrition logging.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span
+                class="px-2 py-1 bg-[#39FF14] bg-opacity-20 text-[#39FF14] rounded-full text-xs"
+                >Kotlin</span
+              >
+              <span
+                class="px-2 py-1 bg-[#39FF14] bg-opacity-20 text-[#39FF14] rounded-full text-xs"
+                >MVVM</span
+              >
+              <span
+                class="px-2 py-1 bg-[#39FF14] bg-opacity-20 text-[#39FF14] rounded-full text-xs"
+                >Firebase</span
+              >
+            </div>
+            <div class="flex justify-between">
+              <a
+                href="#"
+                class="text-sm text-[#39FF14] hover:underline flex items-center"
+              >
+                <i data-feather="github" class="w-4 h-4 mr-1"></i> Code
+              </a>
+              <a
+                href="#"
+                class="text-sm text-[#39FF14] hover:underline flex items-center"
+              >
+                <i data-feather="external-link" class="w-4 h-4 mr-1"></i> Play
+                Store
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Web Project 2 -->
+        <div
+          class="project-card bg-black bg-opacity-50 rounded-lg overflow-hidden border border-gray-800 hover:border-[#9900FF] transition-all duration-300"
+          data-category="web"
+        >
+          <div
+            class="relative h-48 bg-gradient-to-r from-[#9900FF] to-[#00FFFF]"
+          >
+            <img
+              src="http://static.photos/technology/640x360/306"
+              alt="Web App 2"
+              class="w-full h-full object-cover opacity-90"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"
+            ></div>
+            <div class="absolute bottom-4 left-4">
+              <h3 class="text-xl font-bold">TaskMaster</h3>
+              <p class="text-gray-400 text-sm">Productivity App</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-gray-400 mb-4 text-sm">
+              Kanban-style task management with real-time collaboration
+              features.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span
+                class="px-2 py-1 bg-[#9900FF] bg-opacity-20 text-[#9900FF] rounded-full text-xs"
+                >React</span
+              >
+              <span
+                class="px-2 py-1 bg-[#9900FF] bg-opacity-20 text-[#9900FF] rounded-full text-xs"
+                >Node.js</span
+              >
+              <span
+                class="px-2 py-1 bg-[#9900FF] bg-opacity-20 text-[#9900FF] rounded-full text-xs"
+                >WebSockets</span
+              >
+            </div>
+            <div class="flex justify-between">
+              <a
+                href="#"
+                class="text-sm text-[#39FF14] hover:underline flex items-center"
+              >
+                <i data-feather="github" class="w-4 h-4 mr-1"></i> Code
+              </a>
+              <a
+                href="#"
+                class="text-sm text-[#39FF14] hover:underline flex items-center"
+              >
+                <i data-feather="external-link" class="w-4 h-4 mr-1"></i> Live
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Back Link -->
+      <div class="mt-12 text-center">
+        <a
+          href="index.html"
+          class="px-6 py-3 border-2 border-[#39FF14] text-[#39FF14] font-bold rounded hover:bg-[#39FF14] hover:text-black transition-all duration-300 inline-flex items-center"
+        >
+          <i data-feather="arrow-left" class="w-5 h-5 mr-2"></i> Back to
+          Portfolio
+        </a>
+      </div>
+    </div>
+
+    <script>
+      feather.replace();
+
+      // Category filter functionality
+      document.querySelectorAll(".category-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          // Update active button
+          document
+            .querySelectorAll(".category-btn")
+            .forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          // Filter projects
+          const category = btn.dataset.category;
+          const projects = document.querySelectorAll(".project-card");
+
+          projects.forEach((project) => {
+            if (category === "all" || project.dataset.category === category) {
+              project.style.display = "block";
+            } else {
+              project.style.display = "none";
+            }
+          });
+        });
+      });
+
+      // Matrix Background Effect
+      const canvas = document.getElementById("matrix-bg");
+      const ctx = canvas.getContext("2d");
+
+      // Set canvas size
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      // Initial resize
+      resizeCanvas();
+
+      // Characters for the matrix rain
+      const matrixChars =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$+-*/=%\"'#&_(),.;:?!\\|{}<>[]^~";
+      const chars = matrixChars.split("");
+
+      const fontSize = 14;
+      const columns = canvas.width / fontSize;
+
+      // Array of drops - one per column
+      const drops = [];
+      for (let i = 0; i < columns; i++) {
+        drops[i] = Math.random() * -100; // Start at random positions above the screen
+      }
+
+      function drawMatrix() {
+        // Semi-transparent black to create trailing effect
+        ctx.fillStyle = "rgba(13, 2, 8, 0.04)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = "#39FF14";
+        ctx.font = `${fontSize}px JetBrains Mono`;
+
+        for (let i = 0; i < drops.length; i++) {
+          // Random character
+          const text = chars[Math.floor(Math.random() * chars.length)];
+
+          // x = i * fontSize, y = drops[i] * fontSize
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+          // Reset drop to top when it reaches bottom with some randomness
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+
+          // Move drop down
+          drops[i]++;
+        }
+      }
+
+      // Animation loop
+      function animate() {
+        drawMatrix();
+        requestAnimationFrame(animate);
+      }
+
+      // Start animation
+      animate();
+
+      // Handle window resize
+      window.addEventListener("resize", () => {
+        resizeCanvas();
+        // Recalculate columns after resize
+        const newColumns = canvas.width / fontSize;
+        while (drops.length < newColumns) {
+          drops.push(Math.random() * -100);
+        }
+        while (drops.length > newColumns) {
+          drops.pop();
+        }
+      });
+    </script>
+  </body>
+</html>
